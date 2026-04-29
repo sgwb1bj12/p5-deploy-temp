@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Recursos{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a> / Recursos
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="content-section reveal">
+    <h1>Recursos de la asignatura</h1>
+
+    <h2>Documentacion oficial</h2>
+    <ul class="content-list">
+        <li><strong>Flask:</strong> Framework web de Python utilizado en las practicas</li>
+        <li><strong>Jinja2:</strong> Motor de plantillas integrado en Flask</li>
+        <li><strong>SQLAlchemy:</strong> ORM para la persistencia de datos</li>
+        <li><strong>MDN Web Docs:</strong> Referencia de HTML, CSS y JavaScript</li>
+    </ul>
+</section>
+
+<section class="content-section reveal">
+    <h2>Herramientas</h2>
+    <div class="card-grid">
+        <div class="card reveal reveal-up">
+            <h3>Visual Studio Code</h3>
+            <p>Editor de codigo recomendado para el desarrollo de las practicas,
+               con extensiones para Python, HTML y CSS.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>GitHub</h3>
+            <p>Plataforma de control de versiones utilizada para la entrega de
+               practicas y el trabajo colaborativo.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>PythonAnywhere</h3>
+            <p>Servicio de hosting para desplegar aplicaciones Flask de forma
+               publica y accesible desde cualquier navegador.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

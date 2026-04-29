@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Chat{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a> / Chat
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="content-section">
+    <div class="chat-layout">
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <span>Historial</span>
+            </div>
+            <ul class="project-list">
+                <li class="project-item active">
+                    <span>Conversacion actual</span>
+                </li>
+            </ul>
+            <p class="sidebar-hint">
+                El chat habla directamente con el microservicio mediante fetch.
+                Los mensajes se persisten llamando al microservicio de datos.
+            </p>
+        </aside>
+
+        <div class="chat-main">
+            <div class="chat-messages" id="chat_messages">
+                {% for m in mensajes %}
+                <div class="chat-msg user">{{ m.contenido }}</div>
+                <div class="chat-msg bot">{{ m.respuesta }}</div>
+                {% endfor %}
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chat_input" placeholder="Escribe tu mensaje...">
+                <button class="chat-send" id="chat_send">Enviar</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    window.SVAIA_TOKEN = "{{ token }}";
+    window.SVAIA_CHAT_URL = "{{ chat_base_url }}/api/chat";
+</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Contacto{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a> / Contacto
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="content-section reveal">
+    <h1>Contacto</h1>
+
+    <div class="card-grid two-cols">
+        <div class="card reveal reveal-up">
+            <h3>Profesorado</h3>
+            <p>El equipo docente esta disponible durante las horas de tutoria
+               establecidas al comienzo del cuatrimestre.</p>
+            <p>Las consultas sobre las practicas se realizaran preferentemente
+               a traves del campus virtual.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Campus Virtual</h3>
+            <p>Todo el material de la asignatura, los enunciados de las practicas
+               y los anuncios se publican en la plataforma del campus virtual
+               de la Universidad de Malaga.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-section reveal">
+    <h2>Horarios de tutoria</h2>
+    <div class="info-table">
+        <table>
+            <tr><th>Dia</th><th>Horario</th><th>Modalidad</th></tr>
+            <tr><td>Lunes</td><td>10:00 - 12:00</td><td>Presencial</td></tr>
+            <tr><td>Miercoles</td><td>16:00 - 18:00</td><td>Online</td></tr>
+        </table>
+    </div>
+</section>
+{% endblock %}

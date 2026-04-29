@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Asignatura{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a> / Asignatura
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="content-section reveal">
+    <h1>Informacion de la asignatura</h1>
+
+    <div class="info-table">
+        <table>
+            <tr><th>Nombre</th><td>Seguridad en Aplicaciones Web</td></tr>
+            <tr><th>Codigo</th><td>SVAIA</td></tr>
+            <tr><th>Curso</th><td>2025/2026</td></tr>
+            <tr><th>Cuatrimestre</th><td>Segundo</td></tr>
+            <tr><th>Creditos</th><td>6 ECTS</td></tr>
+            <tr><th>Titulacion</th><td>Grado en Ciberseguridad e Inteligencia Artificial</td></tr>
+            <tr><th>Centro</th><td>Universidad de Malaga</td></tr>
+        </table>
+    </div>
+</section>
+
+<section class="content-section reveal">
+    <h2>Competencias</h2>
+    <ul class="content-list">
+        <li>Comprender los fundamentos de la seguridad en aplicaciones web</li>
+        <li>Identificar y mitigar vulnerabilidades comunes en aplicaciones web</li>
+        <li>Desarrollar aplicaciones web seguras utilizando frameworks modernos</li>
+        <li>Aplicar buenas practicas de desarrollo seguro en proyectos reales</li>
+    </ul>
+</section>
+
+<section class="content-section reveal">
+    <h2>Temario</h2>
+    <ol class="content-list">
+        <li>Introduccion a la seguridad web y HTTP</li>
+        <li>HTML, CSS y JavaScript del lado del cliente</li>
+        <li>Programacion en Flask con plantillas Jinja2</li>
+        <li>Persistencia de datos y SQL</li>
+        <li>Autenticacion y gestion de sesiones</li>
+        <li>Vulnerabilidades OWASP Top 10</li>
+    </ol>
+</section>
+{% endblock %}

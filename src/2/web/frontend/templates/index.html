@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Inicio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <img src="{{ url_for('static', filename='img/icon.svg') }}" alt="" class="hero-icon">
+    <h1>SVAIA</h1>
+    <p class="hero-subtitle">Sistema de soporte para la seguridad y el analisis de vulnerabilidades
+       en aplicaciones e infraestructuras</p>
+</section>
+
+<section class="content-section reveal">
+    <div class="card-grid two-cols">
+        <div class="card card-accent">
+            <h2>Comienza ya</h2>
+            <p>Analiza la seguridad de tu proyecto web de forma sencilla.
+               Registra tus aplicaciones y recibe sugerencias de mejora
+               basadas en las mejores practicas del sector.</p>
+            <a href="{{ url_for('practicas') }}" class="btn">Ver practicas</a>
+        </div>
+        <div class="card">
+            <h2>Vulnerabilidades</h2>
+            <p>Consulta la base de datos de vulnerabilidades conocidas para
+               identificar posibles riesgos en tus dependencias y versiones
+               de software.</p>
+            <a href="{{ url_for('recursos') }}" class="btn btn-outline">Consultar</a>
+        </div>
+    </div>
+</section>
+
+<section class="content-section steps-section reveal reveal-right">
+    <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-text">
+            <h3>Describe tu proyecto</h3>
+            <p>Indica las tecnologias, frameworks y dependencias que utiliza tu aplicacion web.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-text">
+            <h3>Recibe sugerencias</h3>
+            <p>Obtendras un listado de posibles vulnerabilidades que deberias revisar en tu entorno.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-text">
+            <h3>Mas detalles</h3>
+            <p>Accede a informacion ampliada y recursos para corregir cada problema detectado.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-section reveal">
+    <h2 class="section-title">Tabla de precios</h2>
+    <p class="section-subtitle">Elige la modalidad que mejor se adapte a tus necesidades.</p>
+    <div class="pricing-grid">
+        <div class="pricing-card reveal reveal-up">
+            <h3>Basico</h3>
+            <div class="price">0&euro;<span>/mes</span></div>
+            <ul>
+                <li>1 proyecto</li>
+                <li>5 sugerencias</li>
+                <li>Sin soporte</li>
+            </ul>
+            <a href="#" class="btn btn-outline">Comenzar</a>
+        </div>
+        <div class="pricing-card featured reveal reveal-up">
+            <h3>Profesional</h3>
+            <div class="price">19,99&euro;<span>/mes</span></div>
+            <ul>
+                <li>10 proyectos</li>
+                <li>100 sugerencias</li>
+                <li>Soporte por chat</li>
+                <li>Acceso a la API</li>
+            </ul>
+            <a href="#" class="btn">Comenzar</a>
+        </div>
+        <div class="pricing-card reveal reveal-up">
+            <h3>Empresarial</h3>
+            <div class="price">49,99&euro;<span>/mes</span></div>
+            <ul>
+                <li>Proyectos ilimitados</li>
+                <li>Sugerencias ilimitadas</li>
+                <li>Soporte por email</li>
+                <li>Soporte por telefono</li>
+                <li>Acceso a la API</li>
+            </ul>
+            <a href="#" class="btn btn-outline">Comenzar</a>
+        </div>
+    </div>
+</section>
+
+<section class="content-section reveal">
+    <h2 class="section-title">Vulnerabilidades mas comunes</h2>
+    <p class="section-subtitle">Conoce las amenazas del OWASP Top 10 que afectan a la mayoria de aplicaciones web.</p>
+    <div class="card-grid">
+        <div class="card reveal reveal-up">
+            <h3>Inyeccion SQL</h3>
+            <p>Un atacante inserta codigo SQL malicioso a traves de campos de entrada
+               para manipular la base de datos, acceder a informacion confidencial
+               o modificar registros sin autorizacion.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Cross-Site Scripting (XSS)</h3>
+            <p>Se inyectan scripts en paginas web que otros usuarios visualizan,
+               permitiendo robar cookies de sesion, redirigir a sitios fraudulentos
+               o alterar el contenido mostrado.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Autenticacion rota</h3>
+            <p>Fallos en la gestion de sesiones o credenciales que permiten a un
+               atacante suplantar la identidad de otros usuarios o acceder a
+               cuentas sin las credenciales correctas.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>CSRF</h3>
+            <p>Un sitio malicioso provoca que el navegador del usuario envie
+               peticiones no deseadas a una aplicacion en la que esta autenticado,
+               ejecutando acciones sin su consentimiento.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-section reveal reveal-right">
+    <h2 class="section-title">Por que elegir SVAIA</h2>
+    <div class="card-grid two-cols">
+        <div class="card card-accent">
+            <h2>Analisis automatizado</h2>
+            <p>Nuestro motor analiza tu proyecto de forma continua, detectando
+               nuevas vulnerabilidades a medida que se publican en las bases de
+               datos de seguridad. Recibe alertas en tiempo real sin necesidad
+               de ejecutar escaneos manuales.</p>
+        </div>
+        <div class="card">
+            <h2>Informes detallados</h2>
+            <p>Genera informes en formato PDF o HTML con el estado de seguridad
+               de tu aplicacion. Incluye severidad, descripcion del riesgo,
+               referencias CVE y pasos concretos para corregir cada problema
+               detectado.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-section reveal">
+    <h2 class="section-title">Tecnologias soportadas</h2>
+    <p class="section-subtitle">SVAIA se integra con los frameworks y lenguajes mas utilizados en el desarrollo web.</p>
+    <div class="card-grid">
+        <div class="card reveal reveal-up">
+            <h3>Python / Flask</h3>
+            <p>Deteccion de inyecciones, configuraciones inseguras y dependencias
+               vulnerables en proyectos Flask y Django.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>JavaScript / Node.js</h3>
+            <p>Analisis de paquetes npm, deteccion de XSS en plantillas y revision
+               de cabeceras de seguridad en aplicaciones Express.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Java / Spring</h3>
+            <p>Evaluacion de la configuracion de Spring Security, gestion de tokens
+               y validacion de entradas en controladores REST.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

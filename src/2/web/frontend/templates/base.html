@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SVAIA{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='img/icon.svg') }}" alt="SVAIA" class="nav-icon">
+                    SVAIA
+                </a>
+                <button class="nav-toggle" aria-label="Abrir menu">&#9776;</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('asignatura') }}">Asignatura</a></li>
+                <li><a href="{{ url_for('practicas') }}">Practicas</a></li>
+                <li><a href="{{ url_for('recursos') }}">Recursos</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                <li><a href="{{ url_for('chat') }}">Chat</a></li>
+                {% if current_user %}
+                <li><a href="{{ url_for('panel') }}">Panel</a></li>
+                {% endif %}
+            </ul>
+            <div class="nav-right">
+                {% if current_user %}
+                <span class="user-info">{{ current_user.username }} ({{ current_user.role }})</span>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}{% endwith %}
+                <a href="{{ url_for('logout') }}" class="nav-cta">Cerrar sesion</a>
+                {% else %}
+                <a href="{{ url_for('login') }}" class="nav-cta">Iniciar sesion</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <div class="alert-banner" id="alertBanner">
+        <span>Atencion! Mensaje de alerta para indicar que se ha podido producir un error
+            (<a href="{{ url_for('practicas') }}">ver detalles</a>).
+        </span>
+        <button class="alert-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+
+    {% block breadcrumb %}{% endblock %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4>Redes sociales</h4>
+                <div class="social-icons">
+                    <span class="social-icon">&#x1F426;</span>
+                    <span class="social-icon">&#x1F4F7;</span>
+                    <span class="social-icon">&#x1F4BC;</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>SVAIA</h4>
+                <p>ETSI Informatica</p>
+                <p>Universidad de Malaga</p>
+                <p>Bulevar Louis Pasteur, 35</p>
+                <p>29071 Malaga</p>
+                <p>Espana</p>
+            </div>
+            <div class="footer-col">
+                <h4>Producto</h4>
+                <ul>
+                    <li><a href="{{ url_for('chat') }}">SVAIA Chat</a></li>
+                    <li><a href="{{ url_for('recursos') }}">Documentacion</a></li>
+                    <li><a href="{{ url_for('practicas') }}">Practicas</a></li>
+                    <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Politica de privacidad</a></li>
+                    <li><a href="#">Terminos de uso</a></li>
+                    <li><a href="{{ url_for('contacto') }}">Trabajos con nosotros</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SVAIA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburguesa
+        document.querySelector(".nav-toggle").addEventListener("click", function () {
+            document.querySelector(".nav-links").classList.toggle("active");
+            document.querySelector(".nav-right").classList.toggle("active");
+        });
+
+        // Cerrar alerta
+        var alertClose = document.querySelector(".alert-close");
+        if (alertClose) {
+            alertClose.addEventListener("click", function () {
+                var banner = document.getElementById("alertBanner");
+                banner.style.opacity = "0";
+                banner.style.maxHeight = "0";
+                banner.style.padding = "0 20px";
+                setTimeout(function () { banner.style.display = "none"; }, 300);
+            });
+        }
+
+        // Animaciones de scroll con IntersectionObserver
+        var reveals = document.querySelectorAll(".reveal");
+        if (reveals.length > 0) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.12 });
+            reveals.forEach(function (el) { observer.observe(el); });
+        }
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

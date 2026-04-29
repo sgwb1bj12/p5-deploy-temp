@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Panel{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a> / Panel
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="content-section">
+    <h1>Panel autenticado</h1>
+    <p class="section-subtitle">
+        Bienvenido <strong>{{ current_user.username }}</strong> (rol: {{ current_user.role }}).
+        {% if current_user.role == 'admin' %}
+        Como administrador puedes ver el historial de conversaciones de todos los usuarios.
+        {% else %}
+        Aqui se muestra tu historial personal de conversaciones.
+        {% endif %}
+    </p>
+
+    <div class="card-grid two-cols">
+        <div class="card card-accent">
+            <h2>Mensajes registrados</h2>
+            <p>{{ mensajes|length }} mensaje(s) persistidos en el microservicio de datos.</p>
+            <a href="{{ url_for('chat') }}" class="btn">Ir al chat</a>
+        </div>
+        <div class="card">
+            <h2>Sesion</h2>
+            <p>La autenticacion se gestiona con JWT emitido por el microservicio de datos.
+               La sesion Flask mantiene el estado en la web.</p>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline">Cerrar sesion</a>
+        </div>
+    </div>
+</section>
+
+<section class="content-section">
+    <h2 class="section-title">Historial de conversaciones</h2>
+    {% if mensajes %}
+    <div class="info-table">
+        <table>
+            <tr>
+                <th>Fecha</th>
+                {% if current_user.role == 'admin' %}<th>Usuario</th>{% endif %}
+                <th>Mensaje</th>
+                <th>Respuesta</th>
+            </tr>
+            {% for m in mensajes %}
+            <tr>
+                <td>{{ m.created_at }}</td>
+                {% if current_user.role == 'admin' %}<td>{{ m.owner }}</td>{% endif %}
+                <td>{{ m.contenido }}</td>
+                <td>{{ m.respuesta }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+    <p class="empty">Todavia no hay mensajes registrados.</p>
+    {% endif %}
+</section>
+{% endblock %}

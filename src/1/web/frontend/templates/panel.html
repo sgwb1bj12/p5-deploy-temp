@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel autenticado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="card panel-header">
+            <div>
+                <h1>Panel autenticado</h1>
+                <p class="meta">Usuario: {{ user.username }} | Rol: {{ user.role }}</p>
+            </div>
+            <a href="{{ url_for('logout') }}" class="btn btn-secondary">Cerrar sesión</a>
+        </section>
+
+        <section class="card">
+            <h2>Nueva tarea</h2>
+            <form id="form-tarea" autocomplete="off">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+                <p class="feedback" id="feedback"></p>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Tareas visibles</h2>
+            <div id="lista-tareas" class="lista"></div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/panel.js') }}"></script>
+</body>
+</html>

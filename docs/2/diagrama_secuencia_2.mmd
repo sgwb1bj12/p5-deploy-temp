@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    actor U as Usuario
+    participant B as Navegador (JS)
+    participant W as Web Flask (5201)
+    participant C as Chat (5203)
+    participant A as API datos (5202)
+
+    U->>B: Escribe mensaje y pulsa Enviar
+    Note over B,C: Origen distinto (5201 vs 5203) → CORS
+
+    B->>C: OPTIONS /api/chat (preflight)
+    C-->>B: 200 Access-Control-Allow-Origin/Headers
+
+    B->>C: POST /api/chat (fetch)<br/>Authorization: Bearer <token>
+    C->>C: @auth_required valida JWT
+    C->>C: AnimalFactsService.get_response(msg)
+    C-->>B: 200 { message, user }
+
+    B->>B: Pinta respuesta en el DOM
+
+    B->>W: POST /api/mensajes { contenido, respuesta }
+    W->>A: POST /api/mensajes (Authorization: Bearer token)
+    A->>A: @auth_required + INSERT mensaje
+    A-->>W: 201 { id, ... }
+    W-->>B: 200 persist ok

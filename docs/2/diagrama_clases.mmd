@@ -1,0 +1,80 @@
+classDiagram
+    class User {
+        +int id
+        +string username
+        +string password_hash
+        +string role
+        +bool is_admin
+        +set_password(pw)
+        +check_password(pw) bool
+        +to_dict() dict
+        +lookup(username)$ User
+        +identify(id)$ User
+    }
+
+    class Mensaje {
+        +int id
+        +int user_id
+        +string contenido
+        +string respuesta
+        +datetime created_at
+        +to_dict() dict
+    }
+
+    class AuthResource {
+        <<Flask-RESTful>>
+        +post() dict
+    }
+
+    class MensajeListResource {
+        <<Flask-RESTful>>
+        +get() list
+        +post() dict
+    }
+
+    class MensajeResource {
+        <<Flask-RESTful>>
+        +get(id) dict
+        +delete(id) dict
+    }
+
+    class UserListResource {
+        <<Flask-RESTful>>
+        +get() list
+    }
+
+    class ChatResource {
+        <<Flask-RESTful>>
+        +post() dict
+    }
+
+    class AnimalFactsService {
+        +get_response(msg) string
+    }
+
+    class ApiClient {
+        <<services.api_client>>
+        +autenticar(u, p) dict
+        +listar_mensajes(token) list
+        +crear_mensaje(token, c, r) dict
+    }
+
+    class WebApp {
+        <<Flask>>
+        +login()
+        +logout()
+        +panel()
+        +chat()
+        +api_mensajes()
+    }
+
+    User "1" -- "*" Mensaje : tiene
+    AuthResource ..> User : autentica
+    MensajeListResource ..> Mensaje : CRUD
+    MensajeResource ..> Mensaje : CRUD
+    UserListResource ..> User : lista
+    ChatResource ..> User : valida JWT
+    ChatResource ..> AnimalFactsService : usa
+    WebApp ..> ApiClient : delega
+    ApiClient ..> AuthResource : HTTP
+    ApiClient ..> MensajeListResource : HTTP

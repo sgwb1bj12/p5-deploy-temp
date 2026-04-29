@@ -1,0 +1,24 @@
+sequenceDiagram
+    autonumber
+    actor U as Usuario
+    participant B as Navegador
+    participant W as Web Flask (5201)
+    participant A as API datos (5202)
+    participant DB as MariaDB
+
+    U->>B: Introduce usuario y contraseña
+    B->>W: POST /login (form)
+    W->>A: POST /api/auth/login (JSON)
+    A->>DB: SELECT user WHERE username=?
+    DB-->>A: user + password_hash
+    A->>A: guard.authenticate + encode_jwt_token
+    A-->>W: 200 { access_token, user }
+    W->>W: session["access_token"] = token
+    W-->>B: 302 /panel (Set-Cookie sesión)
+    B->>W: GET /panel (con cookie)
+    W->>A: GET /api/mensajes (Authorization: Bearer token)
+    A->>A: @auth_required valida JWT
+    A->>DB: SELECT mensajes WHERE user_id=?
+    DB-->>A: filas
+    A-->>W: 200 [mensajes]
+    W-->>B: HTML panel con historial

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}SVAIA - Practicas{% endblock %}
+
+{% block breadcrumb %}
+<div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Inicio</a> / Practicas
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="content-section reveal">
+    <h1>Practicas de laboratorio</h1>
+
+    <div class="card-grid">
+        <div class="card reveal reveal-up">
+            <h3>Practica 1</h3>
+            <p><strong>Tema:</strong> HTML, CSS y fundamentos web</p>
+            <p>Introduccion al desarrollo web estatico. Creacion de paginas con HTML
+               semantico y estilos CSS. Conceptos basicos de maquetacion y responsividad.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Practica 2</h3>
+            <p><strong>Tema:</strong> JavaScript y comunicacion con el servidor</p>
+            <p>Programacion del lado del cliente con JavaScript. Validacion de formularios,
+               manipulacion del DOM y comunicacion con una API Flask mediante fetch.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Practica 3</h3>
+            <p><strong>Tema:</strong> Flask y Jinja2</p>
+            <p>Desarrollo de una aplicacion web dinamica con Flask. Uso de plantillas
+               Jinja2 con herencia, rutas, controladores y un servicio de chat del lado
+               del servidor.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Practica 4</h3>
+            <p><strong>Tema:</strong> Persistencia y seguridad</p>
+            <p>Integracion de base de datos con SQLAlchemy. Operaciones CRUD,
+               migraciones con Alembic y aplicacion de medidas de seguridad contra
+               vulnerabilidades comunes.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-section reveal">
+    <h2>Normas de entrega</h2>
+    <ul class="content-list">
+        <li>Las practicas se entregan a traves de GitHub con tags/releases</li>
+        <li>Se debe mantener la estructura de carpetas indicada en cada enunciado</li>
+        <li>No incluir informacion personal ni identificativa en los archivos</li>
+        <li>Se valorara la organizacion, la calidad del codigo y la comprension demostrada</li>
+    </ul>
+</section>
+
+<section class="content-section reveal">
+    <h2>Calendario de entregas</h2>
+    <div class="info-table">
+        <table>
+            <tr><th>Practica</th><th>Entrega de aula</th><th>Entrega final</th><th>Peso</th></tr>
+            <tr><td>Practica 1</td><td>Semana 3</td><td>Semana 5</td><td>15%</td></tr>
+            <tr><td>Practica 2</td><td>Semana 6</td><td>Semana 8</td><td>20%</td></tr>
+            <tr><td>Practica 3</td><td>Semana 9</td><td>Semana 11</td><td>30%</td></tr>
+            <tr><td>Practica 4</td><td>Semana 12</td><td>Semana 14</td><td>35%</td></tr>
+        </table>
+    </div>
+</section>
+
+<section class="content-section reveal reveal-right">
+    <h2>Criterios de evaluacion</h2>
+    <div class="card-grid two-cols">
+        <div class="card reveal reveal-up">
+            <h3>Funcionalidad</h3>
+            <p>La aplicacion debe cumplir todos los requisitos descritos en el enunciado.
+               Se comprobara que las rutas, formularios y servicios funcionan correctamente
+               en distintos navegadores.</p>
+        </div>
+        <div class="card reveal reveal-up">
+            <h3>Calidad del codigo</h3>
+            <p>Se valora la legibilidad, la organizacion en modulos, el uso correcto
+               de patrones como MVC y la ausencia de codigo duplicado o innecesario.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
