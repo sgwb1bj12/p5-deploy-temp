@@ -8,9 +8,13 @@ from flask_cors import CORS
 from controllers.chat_controller import registrar_rutas_chat
 from models import db
 from models.user_model import User
+from services.user_bootstrap import crear_usuarios_iniciales
 
 
 def _build_db_uri():
+    override = os.environ.get("DATABASE_URL")
+    if override:
+        return override
     user = os.environ.get("DB_USER", "sgwb26")
     password = quote_plus(os.environ.get("DB_PASSWORD", "Crs2?26cSiA"))
     host = os.environ.get("DB_HOST", "127.0.0.1")
@@ -43,6 +47,10 @@ guard = flask_praetorian.Praetorian()
 guard.init_app(app, User)
 
 registrar_rutas_chat(app)
+
+with app.app_context():
+    db.create_all()
+    crear_usuarios_iniciales(guard)
 
 
 if __name__ == "__main__":

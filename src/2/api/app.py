@@ -11,6 +11,9 @@ from services.auth_service import crear_usuarios_iniciales
 
 
 def _build_db_uri():
+    override = os.environ.get("DATABASE_URL")
+    if override:
+        return override
     user = os.environ.get("DB_USER", "sgwb26")
     password = quote_plus(os.environ.get("DB_PASSWORD", "Crs2?26cSiA"))
     host = os.environ.get("DB_HOST", "127.0.0.1")
